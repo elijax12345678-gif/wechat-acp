@@ -30,6 +30,14 @@
   "engines": {
     "node": ">=20.0.0"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/formulahendry/wechat-acp.git"
+  },
+  "homepage": "https://github.com/formulahendry/wechat-acp#readme",
+  "bugs": {
+    "url": "https://github.com/formulahendry/wechat-acp/issues"
+  },
   "license": "MIT",
   "keywords": [
     "wechat",
