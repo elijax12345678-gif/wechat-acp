@@ -205,6 +205,10 @@ export class SessionManager {
   }
 
   private cleanupIdleSessions(): void {
+    if (this.opts.idleTimeoutMs <= 0) {
+      return;
+    }
+
     const now = Date.now();
     for (const [userId, session] of this.sessions) {
       if (now - session.lastActivity > this.opts.idleTimeoutMs && !session.processing) {
